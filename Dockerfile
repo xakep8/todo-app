@@ -1,16 +1,17 @@
 FROM --platform=$BUILDPLATFORM node:lts-alpine as base
-WORKDIR /todo-app
+WORKDIR /app
 COPY package.json /
 EXPOSE 80
 
 FROM base as production
 ENV NODE_ENV=production
-RUN npm install -g pm2 && npm install
-COPY . /todo-app
+RUN npm install
+COPY . /app
 CMD node index.js
+
 
 FROM base as dev
 ENV NODE_ENV=development
 RUN npm install -g nodemon && npm install
-COPY . /todo-app
+COPY . /app
 CMD npm run start

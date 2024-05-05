@@ -1,0 +1,8 @@
+FROM --platform=$BUILDPLATFORM node:lts-alpine as base
+WORKDIR /app
+COPY package.json /
+EXPOSE 80
+ENV NODE_ENV=production
+RUN npm install
+COPY . /app
+CMD node index.js
