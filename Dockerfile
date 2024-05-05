@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM node:lts-alpine as base
+FROM --platform=linux/amd64 node:lts-alpine as base
 WORKDIR /app
 COPY package.json /
 EXPOSE 80
